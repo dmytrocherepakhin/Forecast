@@ -4,12 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import forecastReducer from './store/reducers/forecastReducer';
+import { applyMiddleware, createStore } from 'redux';
+import { sagaForecastWatcher } from './store/sagas/forecastSaga';
+
+const saga = createSagaMiddleware();
+
+export const store = createStore(
+  forecastReducer, applyMiddleware(saga));
+
+saga.run(sagaForecastWatcher);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <App />
-  </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

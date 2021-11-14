@@ -1,19 +1,9 @@
-import React from "react";
-
-export interface ICity{
-    weather:[
-        {
-            description: string,
-            icon: string
-        }
-    ],
-    main:{
-        temp:number,
-        feels_like:number,
-        pressure: number,
-        humidity: number
-    },
-    wind:{
-        speed:number
-    }
+export interface IForecast {
+    weatherDescription: string,
+    weatherIcon: string,
+    mainTemp: string,
+    mainFeels_like: string,
+    mainPressure: number,
+    mainHumidity: number
+    windSpeed: string
 }
