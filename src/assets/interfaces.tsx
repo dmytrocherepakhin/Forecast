@@ -1,22 +1,22 @@
 import { store } from "..";
 
 export interface IForecast {
-    weather:[
-        {
-            description: string,
-            icon: string
-        }
-    ],
-    main:{
-        temp: number,
-        feels_like: number,
-        pressure: number,
-        humidity: number
-    },
-    wind:{
-        speed: number
-    },
-    name:string
+  weather: [
+    {
+      description: string;
+      icon: string;
+    }
+  ];
+  main: {
+    temp: number;
+    feels_like: number;
+    pressure: number;
+    humidity: number;
+  };
+  wind: {
+    speed: number;
+  };
+  name: string;
 }
 
 export type RootState = ReturnType<typeof store.getState>;

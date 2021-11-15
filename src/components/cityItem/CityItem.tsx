@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styled from 'styled-components'
+import styled from "styled-components";
 import { RootState } from "../../assets/interfaces";
 import { getCities } from "../../store/actions/actions";
 
 const SLink = styled(Link)`
-background: white;
+  background: white;
   border-radius: 3px;
   border: 3px solid gray;
   color: gray;
@@ -15,16 +15,16 @@ background: white;
   font-size: 16px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
 
-  :hover{
+  :hover {
     color: white;
     background-color: gray;
-    transition: all .2s;
+    transition: all 0.2s;
   }
-`
+`;
 export const CityItemContainer = styled.div`
-  border:  3px solid gray;
+  border: 3px solid gray;
   width: 200px;
   height: 200px;
   margin: 10px;
@@ -35,14 +35,14 @@ export const CityItemContainer = styled.div`
   justify-content: center;
   border-radius: 10px;
 
-  & a{
+  & a {
     color: gray;
     text-decoration: none;
-    transition: all .2s;
-}
-`
-export const Button=styled.div`
-background: white;
+    transition: all 0.2s;
+  }
+`;
+export const Button = styled.div`
+  background: white;
   border-radius: 3px;
   border: 3px solid gray;
   color: gray;
@@ -51,32 +51,33 @@ background: white;
   font-size: 16px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
 
-  :hover{
+  :hover {
     color: white;
     background-color: gray;
-    transition: all .2s;
+    transition: all 0.2s;
   }
-`
+`;
 
 function CityItem(props: any): JSX.Element {
+  const cities = useSelector((state: RootState) => state.cities);
+  const dispatch = useDispatch();
 
-  const cities=useSelector((state: RootState) => state.cities);
-const dispatch=useDispatch();
-
-const deleteCityHandler = (e: React.MouseEvent): void => {
-  const target = e.currentTarget as HTMLInputElement;
-  dispatch( getCities(cities.filter(el=>el !== target.id)))
-};
+  const deleteCityHandler = (e: React.MouseEvent): void => {
+    const target = e.currentTarget as HTMLInputElement;
+    dispatch(getCities(cities.filter((el) => el !== target.id)));
+  };
 
   return (
     <CityItemContainer>
       <h2>{props.city}</h2>
-      <SLink  to={"city/"+props.city}>Show forecast</SLink>
-      <Button onClick={deleteCityHandler} id={props.city}>Delete city</Button>
+      <SLink to={"city/" + props.city}>Show forecast</SLink>
+      <Button onClick={deleteCityHandler} id={props.city}>
+        Delete city
+      </Button>
     </CityItemContainer>
-  )
+  );
 }
 
-export default CityItem
+export default CityItem;
