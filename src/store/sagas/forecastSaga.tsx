@@ -16,7 +16,7 @@ function* sagaForecastWorker({ payload }: IForecastSaga) {
     );
     yield put(
       getForecastSuccess(
-        response.data.forecast
+        response.data,
       )
     );
   } catch (e) {

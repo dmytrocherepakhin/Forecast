@@ -13,7 +13,7 @@ import { sagaForecastWatcher } from './store/sagas/forecastSaga';
 const saga = createSagaMiddleware();
 
 export const store = createStore(
-  forecastReducer, applyMiddleware(saga));
+  forecastReducer, (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(applyMiddleware(saga)));
 
 saga.run(sagaForecastWatcher);
 

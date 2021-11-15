@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { getForecast } from '../../assets/api';
 import CityItem, { Button, CityItemContainer } from "../cityItem/CityItem";
 import styled from "styled-components";
-import { IForecast } from "../../assets/interfaces";
+import { RootState } from "../../assets/interfaces";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
 color: gray;
@@ -18,25 +17,9 @@ text-transform: uppercase;
 `
 
 function Home(): JSX.Element {
-    const [cities, setSities] = useState<string[]>(['Kharkiv', 'Kyiv', 'London', 'New-York', 'Tokio'])
-    const [forecast, setForecast] = useState<IForecast | null>(null)
-
-    useEffect(() => {
-        async function fetchData() {
-            const forecastData = (await getForecast('London'));
-            setForecast({
-                weatherDescription: forecastData.data.weather[0].description,
-                weatherIcon: forecastData.data.weather[0].icon,
-                mainTemp: (forecastData.data.main.temp - 273.15).toFixed(1),
-                mainFeels_like: (forecastData.data.main.feels_like - 273.15).toFixed(1),
-                mainPressure: forecastData.data.main.pressure,
-                mainHumidity: forecastData.data.main.humidity,
-                windSpeed: forecastData.data.wind.speed.toFixed(1)
-            })
-        }
-        if (!forecast) fetchData()
-        console.log(forecast)
-    });
+    const cities = useSelector(
+        (state: RootState) => state.cities
+      );
 
     return (
         <Container>

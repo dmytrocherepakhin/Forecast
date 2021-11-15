@@ -19,7 +19,7 @@ export interface IGetForecastError {
 export interface IForecastSaga {
   type: typeof FORECAST_SAGA;
   payload: {
-    cityName: string
+    cityName: string | undefined
   }
 }
 
@@ -53,7 +53,7 @@ export function getForecastError(
 }
 
 export function forecastSaga(
-  cityName: string
+  cityName: string | undefined
 ): IForecastSaga {
   return {
     type: FORECAST_SAGA,

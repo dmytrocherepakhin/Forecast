@@ -5,13 +5,12 @@ import { FORECAST_SAGA, GET_CITIES, GET_FORECAST_ERROR, GET_FORECAST_SUCCESS } f
 interface IState {
   cities: string[],
   forecast: IForecast | null,
-  cityName: string,
+  cityName: string |undefined,
   error: string
 }
 
-
 const initialState = {
-  cities: ['Kharkiv', 'Kyiv', 'London', 'New-York', 'Tokio'],
+  cities: ['Kharkiv', 'Kyiv', 'London', 'New York', 'Tokio'],
   forecast: null,
   cityName: '',
   error: ''
