@@ -6,6 +6,7 @@ import { RootState } from "../../assets/interfaces";
 import { getCities } from "../../store/actions/actions";
 
 const SLink = styled(Link)`
+  width: 150px;
   background: white;
   border-radius: 3px;
   border: 3px solid gray;
@@ -33,6 +34,7 @@ export const CityItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border-radius: 10px;
 
   & a {
@@ -41,7 +43,8 @@ export const CityItemContainer = styled.div`
     transition: all 0.2s;
   }
 `;
-export const Button = styled.div`
+export const Btn = styled.div`
+width: 150px;
   background: white;
   border-radius: 3px;
   border: 3px solid gray;
@@ -73,9 +76,9 @@ function CityItem(props: any): JSX.Element {
     <CityItemContainer>
       <h2>{props.city}</h2>
       <SLink to={"city/" + props.city}>Show forecast</SLink>
-      <Button onClick={deleteCityHandler} id={props.city}>
+      <Btn onClick={deleteCityHandler} id={props.city}>
         Delete city
-      </Button>
+      </Btn>
     </CityItemContainer>
   );
 }

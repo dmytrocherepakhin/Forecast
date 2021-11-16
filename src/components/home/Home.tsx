@@ -1,7 +1,9 @@
-import CityItem, { Button, CityItemContainer } from "../cityItem/CityItem";
+import CityItem, { Btn, CityItemContainer } from "../cityItem/CityItem";
 import styled from "styled-components";
 import { RootState } from "../../assets/interfaces";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import Modal from "../modal/Modal";
 
 const Container = styled.div`
   color: gray;
@@ -17,7 +19,16 @@ const Title = styled.h1`
 `;
 
 function Home(): JSX.Element {
+  const [openModal, setOpenModal]=useState(false);
   const cities = useSelector((state: RootState) => state.cities);
+
+  function modalHandler():void{
+    openModal ? setOpenModal(false) : setOpenModal(true);
+  }
+
+  useEffect(()=>{
+    console.log(cities)
+  })
 
   return (
     <Container>
@@ -27,9 +38,10 @@ function Home(): JSX.Element {
           <CityItem key={index} city={el} />
         ))}
         <CityItemContainer>
-          <Button>Add new city</Button>
+          <Btn onClick={modalHandler}>Add new city</Btn>
         </CityItemContainer>
       </Wrapper>
+      {openModal ? <Modal modalHandler={modalHandler}/> : null}
     </Container>
   );
 }
