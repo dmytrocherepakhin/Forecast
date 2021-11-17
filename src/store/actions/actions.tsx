@@ -9,7 +9,7 @@ import {
 export interface IGetForecastSuccess {
   type: typeof GET_FORECAST_SUCCESS;
   payload: {
-    forecast: IForecast;
+    forecast: IForecast | null;
   };
 }
 
@@ -34,7 +34,7 @@ export interface IGetCities {
   };
 }
 
-export function getForecastSuccess(forecast: IForecast): IGetForecastSuccess {
+export function getForecastSuccess(forecast: IForecast | null): IGetForecastSuccess {
   return {
     type: GET_FORECAST_SUCCESS,
     payload: {

@@ -25,10 +25,8 @@ function Home(): JSX.Element {
   function modalHandler():void{
     openModal ? setOpenModal(false) : setOpenModal(true);
   }
-
   useEffect(()=>{
-    console.log(cities)
-  })
+  },[cities])
 
   return (
     <Container>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getForecast } from "../../assets/api";
 import { RootState } from "../../assets/interfaces";
-import { getCities } from "../../store/actions/actions";
+import {  getCities } from "../../store/actions/actions";
 import { Btn } from "../cityItem/CityItem";
 
 type IProps={
@@ -25,7 +26,7 @@ transform: translate(-50%, -50%);
     border: 3px solid black;
     background-color: white;
    width: 300px;
-  height: 200px;
+  height: 250px;
   padding: 10px;
   text-align: center;
   display: flex;
@@ -77,24 +78,33 @@ export default function Modal(props:IProps):JSX.Element{
   const dispatch = useDispatch();
   const [inputValue, setInputValue]=useState('');
   const cities = useSelector((state: RootState) => state.cities);
+  const [wrongCityMarker, setWrongCityMarker]=useState(' ');
 
   function inputHandler(event:React.ChangeEvent):void{
-    const target =event.target as HTMLFormElement;
+    const target = event.target as HTMLFormElement;
     setInputValue(target.value)
   }
   
-  function addCityFormHandler(event: React.SyntheticEvent):void{
+  async function addCityFormHandler(event: React.SyntheticEvent): Promise<void>{
     event.preventDefault();
-    if(!cities.find(el=>el===inputValue)){
-      cities.push(inputValue);
-      dispatch(getCities(cities));
-      setInputValue('');
-    }
+    const response = await getForecast(inputValue);
+    if(response) {
+      if(cities.find(el=>el.toLowerCase()===inputValue.toLowerCase())){
+        setWrongCityMarker('This city already exists');
+      } else {
+        dispatch(getCities(cities.concat(inputValue.split(' ').map(el=>el.split('').map((letter, index)=>index===0 ? letter.toUpperCase() : letter.toLowerCase()).join('')).join(' '))));
+        setInputValue('');
+        setWrongCityMarker('New City were added');
+      }
+    }else{
+      setWrongCityMarker('Wrong city name');
+    } 
   }
   
     return (
          <Container>
              <Wrapper>
+               <p>{wrongCityMarker}</p>
              <Form onSubmit={addCityFormHandler}>
                 <Input onChange={inputHandler} value={inputValue} type="text" />
                 <Button type='submit'>Add</Button>

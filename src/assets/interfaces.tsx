@@ -17,6 +17,7 @@ export interface IForecast {
     speed: number;
   };
   name: string;
+  code: string | number
 }
 
 export type RootState = ReturnType<typeof store.getState>;

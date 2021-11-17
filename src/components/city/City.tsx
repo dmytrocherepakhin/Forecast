@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { RootState } from "../../assets/interfaces";
-import { forecastSaga } from "../../store/actions/actions";
+import { forecastSaga, getForecastSuccess } from "../../store/actions/actions";
 
 const Wrapper = styled.div`
   margin: 20px auto;
@@ -51,7 +51,7 @@ function City(): JSX.Element {
   const dispatch = useDispatch();
   const forecast = useSelector((state: RootState) => state.forecast);
 
-  const makeRequest = async (): Promise<void> => {
+   const makeRequest = async (): Promise<void> => {
     const city = params.id;
     dispatch(forecastSaga(city));
   };
@@ -60,6 +60,8 @@ function City(): JSX.Element {
     makeRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
+
+  const clearForecast=()=>dispatch(getForecastSuccess(null))
 
   return (
     <Wrapper>
@@ -84,7 +86,7 @@ function City(): JSX.Element {
         {"\u2103"}
       </p>
       <p>
-        Feels_likefeels_like:{" "}
+        Feels like:{" "}
         {forecast?.main.feels_like
           ? (forecast?.main.feels_like - 273.15).toFixed(1)
           : "---"}{" "}
@@ -93,7 +95,7 @@ function City(): JSX.Element {
       <p>Pressure: {forecast?.main.pressure} Pa</p>
       <p>Humidity: {forecast?.main.humidity} %</p>
       <p>Wind: {forecast?.wind.speed} m/c</p>
-      <SLink to={"/"}>Home</SLink>
+      <SLink onClick={clearForecast} to={"/"}>Home</SLink>
     </Wrapper>
   );
 }

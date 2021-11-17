@@ -1,10 +1,12 @@
-import axios, { AxiosPromise } from "axios";
+import axios, {  AxiosPromise } from "axios";
 
 const url = "https://api.openweathermap.org/data/2.5/weather";
 
 export async function getForecast(
   cityName: string | undefined
-): Promise<AxiosPromise> {
+): Promise<AxiosPromise | null>  {
+  let forecastData=null;
+  try {
   type IParams = {
     q: string | undefined;
     appid: string | undefined;
@@ -15,10 +17,13 @@ export async function getForecast(
     // appid: process.env.REACT_APP_API_KEY
     appid: process.env.REACT_APP_API_KEY2,
   };
-  const forecastData = await axios.get(url, { params });
-  try {
+
+  forecastData = await axios.get(url, { params });
+ 
     return forecastData;
   } catch (err) {
-    throw new Error("Error  of requestComics");
+    throw new Error("Error  of forecast request");
+  } finally{
+    return forecastData;
   }
 }
