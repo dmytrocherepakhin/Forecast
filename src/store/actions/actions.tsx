@@ -34,7 +34,9 @@ export interface IGetCities {
   };
 }
 
-export function getForecastSuccess(forecast: IForecast | null): IGetForecastSuccess {
+export function getForecastSuccess(
+  forecast: IForecast | null
+): IGetForecastSuccess {
   return {
     type: GET_FORECAST_SUCCESS,
     payload: {

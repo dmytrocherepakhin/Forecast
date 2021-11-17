@@ -44,7 +44,7 @@ export const CityItemContainer = styled.div`
   }
 `;
 export const Btn = styled.div`
-width: 150px;
+  width: 150px;
   background: white;
   border-radius: 3px;
   border: 3px solid gray;

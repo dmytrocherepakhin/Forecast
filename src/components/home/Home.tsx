@@ -2,7 +2,7 @@ import CityItem, { Btn, CityItemContainer } from "../cityItem/CityItem";
 import styled from "styled-components";
 import { RootState } from "../../assets/interfaces";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../modal/Modal";
 
 const Container = styled.div`
@@ -19,14 +19,12 @@ const Title = styled.h1`
 `;
 
 function Home(): JSX.Element {
-  const [openModal, setOpenModal]=useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const cities = useSelector((state: RootState) => state.cities);
 
-  function modalHandler():void{
+  function modalHandler(): void {
     openModal ? setOpenModal(false) : setOpenModal(true);
   }
-  useEffect(()=>{
-  },[cities])
 
   return (
     <Container>
@@ -39,7 +37,7 @@ function Home(): JSX.Element {
           <Btn onClick={modalHandler}>Add new city</Btn>
         </CityItemContainer>
       </Wrapper>
-      {openModal ? <Modal modalHandler={modalHandler}/> : null}
+      {openModal ? <Modal modalHandler={modalHandler} /> : null}
     </Container>
   );
 }
