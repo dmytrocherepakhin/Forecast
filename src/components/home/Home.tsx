@@ -26,6 +26,15 @@ function Home(): JSX.Element {
     openModal ? setOpenModal(false) : setOpenModal(true);
   }
 
+  // localStorage.setItem('cities', '')
+  // const c = localStorage.getItem('cities')
+  // console.log(c)
+
+  // const items = { ...localStorage };
+  // console.log(cities)
+
+  
+
   return (
     <Container>
       <Title>Forecast</Title>

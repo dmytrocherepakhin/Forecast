@@ -74,6 +74,16 @@ const Input = styled.input`
   padding: 0 10px;
 `;
 
+const Warning = styled.p`
+  font-weight: bold;
+  color: red;
+
+    &.green {
+      color: #00a500;
+    }
+  
+`
+
 export default function Modal(props: IProps): JSX.Element {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
@@ -112,7 +122,7 @@ export default function Modal(props: IProps): JSX.Element {
           )
         );
         setInputValue("");
-        setWrongCityMarker("New City were added");
+        setWrongCityMarker("New city were added");
       }
     } else {
       setWrongCityMarker("Wrong city name");
@@ -122,7 +132,7 @@ export default function Modal(props: IProps): JSX.Element {
   return (
     <Container>
       <Wrapper>
-        <p>{wrongCityMarker}</p>
+        <Warning className={wrongCityMarker==="New city were added" ? 'green' : 'red'}>{wrongCityMarker}</Warning>
         <Form onSubmit={addCityFormHandler}>
           <Input onChange={inputHandler} value={inputValue} type="text" />
           <Button type="submit">Add</Button>

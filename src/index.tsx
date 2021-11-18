@@ -12,10 +12,18 @@ import { sagaForecastWatcher } from "./store/sagas/forecastSaga";
 
 const saga = createSagaMiddleware();
 
+// const persistedState = localStorage.getItem('forecastCities') ? JSON.parse(localStorage.getItem('forecastCities')||'{}') : null
+
 export const store = createStore(
   forecastReducer,
+  // persistedState ? persistedState : null,
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(applyMiddleware(saga))
 );
+
+store.subscribe(()=>{
+  localStorage.setItem('forecastCities', JSON.stringify(store.getState().cities))
+})
+
 
 saga.run(sagaForecastWatcher);
 

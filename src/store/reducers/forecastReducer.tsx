@@ -19,8 +19,12 @@ interface IState {
   error: string;
 }
 
+const cities=localStorage.getItem('forecastCities') 
+  ? JSON.parse(localStorage.getItem('forecastCities')||'{}') 
+  : ["Kharkiv", "Kyiv", "London", "New York", "Tokio"]
+
 const initialState = {
-  cities: ["Kharkiv", "Kyiv", "London", "New York", "Tokio"],
+  cities: cities,
   forecast: null,
   cityName: "",
   error: "",
