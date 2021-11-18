@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import NotFound from "./components/notFound/NotFound";
-import Home from "./components/home/Home";
-import City from "./components/city/City";
+import NotFound from "./components/NotFound";
+import Home from "./components/Home";
+import City from "./components/City";
 
 function App() {
   return (

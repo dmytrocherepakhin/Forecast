@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { RootState } from "../../assets/interfaces";
-import { getCities } from "../../store/actions/actions";
+import { RootState } from "../assets/interfaces";
+import { getCities } from "../store/actions/actions";
 
 const SLink = styled(Link)`
   width: 150px;

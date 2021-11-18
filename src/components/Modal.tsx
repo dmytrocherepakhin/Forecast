@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getForecast } from "../../assets/api";
-import { RootState } from "../../assets/interfaces";
-import { getCities } from "../../store/actions/actions";
-import { Btn } from "../cityItem/CityItem";
+import { getForecast } from "../assets/api";
+import { RootState } from "../assets/interfaces";
+import { getCities } from "../store/actions/actions";
+import { Btn } from "./CityItem";
 
 type IProps = {
   modalHandler: React.MouseEventHandler;

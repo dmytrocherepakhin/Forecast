@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { RootState } from "../../assets/interfaces";
-import { forecastSaga, getForecastSuccess } from "../../store/actions/actions";
+import { RootState } from "../assets/interfaces";
+import { forecastSaga, getForecastSuccess } from "../store/actions/actions";
 
 const Wrapper = styled.div`
   margin: 20px auto;

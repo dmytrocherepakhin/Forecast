@@ -1,9 +1,9 @@
-import CityItem, { Btn, CityItemContainer } from "../cityItem/CityItem";
+import CityItem, { Btn, CityItemContainer } from "./CityItem";
 import styled from "styled-components";
-import { RootState } from "../../assets/interfaces";
+import { RootState } from "../assets/interfaces";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import Modal from "../modal/Modal";
+import Modal from "./Modal";
 
 const Container = styled.div`
   color: gray;
@@ -25,15 +25,6 @@ function Home(): JSX.Element {
   function modalHandler(): void {
     openModal ? setOpenModal(false) : setOpenModal(true);
   }
-
-  // localStorage.setItem('cities', '')
-  // const c = localStorage.getItem('cities')
-  // console.log(c)
-
-  // const items = { ...localStorage };
-  // console.log(cities)
-
-  
 
   return (
     <Container>
